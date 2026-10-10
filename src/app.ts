@@ -107,6 +107,7 @@ import { Utils, UtilsOs } from 'tnp-core/src';
 
 import { HOST_CONFIG } from './app.hosts';
 import { ENV_ANGULAR_NODE_APP_BUILD_PWA_DISABLE_SERVICE_WORKER } from './lib/env/env.angular-node-app';
+import { provideTaonSeo } from './lib/taon-seo.service'; // @browser
 // @placeholder-for-imports
 
 //#endregion
@@ -322,6 +323,7 @@ export const SeoClientRoutes: Routes = [
 //#region @browser
 export const SeoAppConfig: ApplicationConfig = {
   providers: [
+    ...provideTaonSeo(),
     provideZonelessChangeDetection(),
     {
       provide: TAON_CONTEXT,

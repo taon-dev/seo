@@ -5,9 +5,15 @@ import { Taon } from 'taon/src';
 const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP);
 
 export const TaonSeoSettingsDefaultsValues = {
-  description: '',
-  version: 0,
-  id: void 0,
+  id: 1,
+  siteName: '',
+  defaultTitle: '',
+  defaultDescription: '',
+  defaultKeywords: null,
+  defaultImageKey: null,
+  canonicalBaseUrl: null,
+  robotsIndex: true,
+  robotsFollow: true,
 } as Partial<TaonSeoSettingsEntity>;
 
 export enum TaonSeoSettingsErrors {

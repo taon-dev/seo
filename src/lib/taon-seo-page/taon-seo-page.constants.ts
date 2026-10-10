@@ -5,9 +5,16 @@ import { Taon } from 'taon/src';
 const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP);
 
 export const TaonSeoPageDefaultsValues = {
-  description: '',
-  version: 0,
-  id: void 0,
+  path: '/',
+  title: null,
+  description: null,
+  keywords: null,
+  canonicalUrl: null,
+  ogTitle: null,
+  ogDescription: null,
+  ogImageKey: null,
+  noIndex: false,
+  noFollow: false,
 } as Partial<TaonSeoPageEntity>;
 
 export enum TaonSeoPageErrors {

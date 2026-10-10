@@ -1,4 +1,12 @@
-<router-outlet></router-outlet>
-<p>
-  taon-seo-page-backoffice works!
-</p>
+<h1>SEO pages</h1>
+<p>SEO overrides for application/static pages, not CMS content.</p>
+@if (error()) {
+  <p role="alert">{{ error() }}</p>
+}
+<taon-datatable
+  [entityCrudController]="crud"
+  [columns]="columns"
+  [allowedColumns]="['id', 'path', 'title', 'noIndex', 'noFollow']"
+  searchMode="advanced"
+  (addingItem)="add()">
+</taon-datatable>

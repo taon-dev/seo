@@ -12,9 +12,10 @@ export const TaonSeoBackofficeRoutes: Routes = [
       ),
 
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'settings' },
       adminLazyRoute({
         path: 'settings',
-        menuItem: 'Settings',
+        menuItem: 'General (Settings)',
         icon: 'settings',
         expandable: false,
         loader: () =>

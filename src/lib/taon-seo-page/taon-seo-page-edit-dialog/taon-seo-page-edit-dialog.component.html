@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>{{ data.page ? 'Edit SEO page' : 'Add SEO page' }}</h2>
+<form
+  [formGroup]="form"
+  (ngSubmit)="save()">
+  <mat-dialog-content>
+    <p>
+      Static/application page overrides. Blank fields inherit global defaults.
+    </p>
+    @if (error()) {
+      <p role="alert">{{ error() }}</p>
+    }
+    <fieldset [disabled]="saving()">
+      <mat-form-field>
+        <mat-label>Path</mat-label>
+        <input
+          matInput
+          formControlName="path"
+          placeholder="/pricing" />
+        <mat-error
+          >Enter an application path without query or fragment.</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          formControlName="title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          rows="3"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Keywords</mat-label>
+        <input
+          matInput
+          formControlName="keywords" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Canonical URL</mat-label>
+        <input
+          matInput
+          formControlName="canonicalUrl"
+          placeholder="https://example.com/pricing" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Open Graph title</mat-label>
+        <input
+          matInput
+          formControlName="ogTitle" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Open Graph description</mat-label>
+        <textarea
+          matInput
+          formControlName="ogDescription"
+          rows="3"></textarea>
+      </mat-form-field>
+      <taon-seo-image-input
+        [key]="form.controls.ogImageKey.value"
+        (keyChange)="form.controls.ogImageKey.setValue($event)"
+        [disabled]="saving()"
+        [(uploading)]="uploading" />
+      <mat-checkbox formControlName="noIndex">noIndex</mat-checkbox>
+      <mat-checkbox formControlName="noFollow">noFollow</mat-checkbox>
+    </fieldset>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      mat-button
+      type="button"
+      [disabled]="saving() || uploading()"
+      (click)="close()">
+      Cancel
+    </button>
+    <button
+      mat-flat-button
+      type="submit"
+      [disabled]="saving() || uploading()">
+      {{ saving() ? 'Saving...' : 'Save page' }}
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,50 +1,81 @@
-//#region imports
 import {
-  Taon,
-  ClassHelpers,
-  TaonController,
-  TaonBaseCrudController,
-  Query,
+  Body,
+  DELETE,
   GET,
+  Models,
+  POST,
+  PUT,
+  Query,
+  Taon,
+  TaonBaseCrudController,
+  TaonController,
 } from 'taon/src';
-import { _ } from 'tnp-core/src';
+
+import { TaonSeoProvider } from '../taon-seo.provider';
 
 import { TaonSeoPageEntity } from './taon-seo-page.entity';
+import type { TaonSeoPageInput } from './taon-seo-page.models';
 import { TaonSeoPageRepository } from './taon-seo-page.repository';
-//#endregion
 
-@TaonController<TaonSeoPageController>({
+@TaonController({
   className: 'TaonSeoPageController',
-  // allowedMethods: []
+  allowedMethods: [
+    'getAll',
+    'getBy',
+    'paginationQuery',
+    'findByPath',
+    'createPage',
+    'updatePage',
+    'deletePage',
+  ],
 })
-export class TaonSeoPageController extends TaonBaseCrudController<
-  TaonSeoPageEntity,
-  {
-    /* file upload query params type */
-  },
-  TaonSeoPageController
-> {
-  entityClassResolveFn: () => typeof TaonSeoPageEntity = () => TaonSeoPageEntity;
+export class TaonSeoPageController extends TaonBaseCrudController<TaonSeoPageEntity> {
+  entityClassResolveFn = () => TaonSeoPageEntity;
+  private readonly pages = this.injectCustomRepo(TaonSeoPageRepository);
+  private readonly seo = this.injectProvider(TaonSeoProvider);
 
-  private readonly taonSeoPageRepository = this.injectCustomRepo(TaonSeoPageRepository);
-
-  //#region methods & getters / hello world
-  /**
-   * TODO remove this demo example method
-   */
-  @GET()
-  helloWord(@Query('yourName') yourName: string): Taon.Response<string> {
-    //#region @websqlFunc
-    return async (req, res) => {
-      const numOfEntities = await this.db.count();
-      const numberOfEvenEntities =
-        await this.taonSeoPageRepository.countEntitesWithEvenId();
-      return `Hello ${yourName || 'world'} from ${ClassHelpers.getName(TaonSeoPageController)}
-      controller..  ${numOfEntities} entites in db..
-      ${numberOfEvenEntities} entites with even ids (2,4,6,8 etc.)
-      `;
-    };
+  async beforeEachRequest(
+    params: Models.TaonCtrlBeforeEachRequestParams,
+  ): Promise<void> {
+    //#region @backendFunc
+    if (params.methodConfig.methodName !== 'findByPath') {
+      await this.seo.requireAdministrator(params);
+    }
     //#endregion
   }
-  //#endregion
+
+  @GET()
+  findByPath(
+    @Query('path') path: string,
+  ): Taon.Response<TaonSeoPageEntity | null> {
+    //#region @websqlFunc
+    return async () => this.pages.findByPath(path);
+    //#endregion
+  }
+
+  @POST()
+  createPage(
+    @Body() input: TaonSeoPageInput,
+  ): Taon.Response<TaonSeoPageEntity> {
+    //#region @websqlFunc
+    return async () => this.pages.savePage(input);
+    //#endregion
+  }
+
+  @PUT()
+  updatePage(
+    @Query('id') id: number,
+    @Body() input: TaonSeoPageInput,
+  ): Taon.Response<TaonSeoPageEntity> {
+    //#region @websqlFunc
+    return async () => this.pages.savePage(input, id);
+    //#endregion
+  }
+
+  @DELETE()
+  deletePage(@Query('id') id: number): Taon.Response<TaonSeoPageEntity> {
+    //#region @websqlFunc
+    return async () => this.pages.deletePage(id);
+    //#endregion
+  }
 }

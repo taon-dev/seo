@@ -4,6 +4,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/lib/taon-seo-settings/taon-seo-settings.constants.ts:18
+#: src/lib/taon-seo-settings/taon-seo-settings.constants.ts:24
 msgid "Invalid Password"
 msgstr ""

@@ -42,7 +42,7 @@ export const TaonBaselineBackofficeRoutes: Routes = [
 
       adminLazyRoute({
         path: 'seo',
-        menuItem: 'Seo',
+        menuItem: 'SEO',
         expandable: true,
         icon: 'query_stats',
         loader: () =>

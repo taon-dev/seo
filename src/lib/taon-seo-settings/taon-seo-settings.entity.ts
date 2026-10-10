@@ -1,32 +1,62 @@
-//#region imports
-import {
-  CustomColumn,
-  Column,
-  Taon,
-  TaonBaseAbstractEntity,
-  TaonEntity,
-} from 'taon/src';
-import { _ } from 'tnp-core/src';
+import { Column, PrimaryColumn, TaonBaseEntity, TaonEntity } from 'taon/src';
 
-import { TaonSeoSettingsDefaultsValues } from './taon-seo-settings.constants';
-//#endregion
-
-@TaonEntity<TaonSeoSettingsEntity>({
+@TaonEntity({
   className: 'TaonSeoSettingsEntity',
   createTable: true,
-  // defaultModelMapping: () => ({
-  //   '': TaonSeoSettingsEntity,
-  //   nestedObjectField: ClassField,
-  //   nestedArrField: [ClassObjArrField],
-  // }),
 })
-export class TaonSeoSettingsEntity extends TaonBaseAbstractEntity<TaonSeoSettingsEntity> {
+export class TaonSeoSettingsEntity extends TaonBaseEntity<TaonSeoSettingsEntity> {
   //#region @websql
-  @CustomColumn({
-    type: 'varchar',
-    length: 100,
-    default: TaonSeoSettingsDefaultsValues.description,
-  })
+  @PrimaryColumn({ type: 'integer' })
   //#endregion
-  description?: string;
+  id: number;
+
+  //#region @websql
+  @Column({ type: 'varchar', default: '' })
+  //#endregion
+  siteName: string;
+
+  //#region @websql
+  @Column({ type: 'varchar', default: '' })
+  //#endregion
+  defaultTitle: string;
+
+  //#region @websql
+  @Column({ type: 'text', default: '' })
+  //#endregion
+  defaultDescription: string;
+
+  //#region @websql
+  @Column({ type: 'text', nullable: true })
+  //#endregion
+  defaultKeywords: string | null;
+
+  //#region @websql
+  @Column({ type: 'varchar', nullable: true })
+  //#endregion
+  defaultImageKey: string | null;
+
+  //#region @websql
+  @Column({ type: 'varchar', nullable: true })
+  //#endregion
+  canonicalBaseUrl: string | null;
+
+  //#region @websql
+  @Column({ type: 'boolean', default: true })
+  //#endregion
+  robotsIndex: boolean;
+
+  //#region @websql
+  @Column({ type: 'boolean', default: true })
+  //#endregion
+  robotsFollow: boolean;
+
+  //#region @websql
+  @Column({ type: 'datetime' })
+  //#endregion
+  createdAt: Date;
+
+  //#region @websql
+  @Column({ type: 'datetime' })
+  //#endregion
+  updatedAt: Date;
 }

@@ -1,27 +1,47 @@
-//#region imports
 import { TaonBaseRepository, TaonRepository } from 'taon/src';
-import { Raw } from 'taon-typeorm/src';
 
+import { validateSeoSettings } from '../taon-seo.validation';
+
+import { TaonSeoSettingsDefaultsValues } from './taon-seo-settings.constants';
 import { TaonSeoSettingsEntity } from './taon-seo-settings.entity';
-//#endregion
+import type { TaonSeoSettingsInput } from './taon-seo-settings.models';
 
-@TaonRepository({
-  className: 'TaonSeoSettingsRepository',
-})
+@TaonRepository({ className: 'TaonSeoSettingsRepository' })
 export class TaonSeoSettingsRepository extends TaonBaseRepository<TaonSeoSettingsEntity> {
-  entityClassResolveFn: () => typeof TaonSeoSettingsEntity = () => TaonSeoSettingsEntity;
+  entityClassResolveFn = () => TaonSeoSettingsEntity;
 
-  /**
-   * TODO remove this demo example method
-   */
-  async countEntitesWithEvenId(): Promise<number> {
+  async getGlobal(): Promise<TaonSeoSettingsEntity> {
     //#region @websqlFunc
-    const result = await this.count({
-      where: {
-        id: Raw(alias => `${alias} % 2 = 0`),
-      },
-    });
-    return result;
+    const repository = this.connection.getRepository<TaonSeoSettingsEntity>(
+      this.target,
+    );
+    const now = new Date();
+    // A fixed primary key and conflict-safe insert also handle concurrent first reads.
+    await repository
+      .createQueryBuilder()
+      .insert()
+      .values({
+        ...TaonSeoSettingsDefaultsValues,
+        createdAt: now,
+        updatedAt: now,
+      })
+      .orIgnore()
+      .execute();
+    return repository.findOneByOrFail({ id: 1 });
+    //#endregion
+  }
+
+  async saveGlobal(
+    input: TaonSeoSettingsInput,
+  ): Promise<TaonSeoSettingsEntity> {
+    //#region @websqlFunc
+    const fields = validateSeoSettings(input);
+    await this.getGlobal();
+    const repository = this.connection.getRepository<TaonSeoSettingsEntity>(
+      this.target,
+    );
+    await repository.update({ id: 1 }, { ...fields, updatedAt: new Date() });
+    return repository.findOneByOrFail({ id: 1 });
     //#endregion
   }
 }
