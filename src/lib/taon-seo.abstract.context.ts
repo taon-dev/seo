@@ -1,16 +1,17 @@
-// THIS FILE IS GENERATED - DO NOT MODIFY
 import { TaonSessionAbstractContext } from '@taon-dev/session/src';
 import { createContext, TaonBaseContext } from 'taon/src';
 
-import { TaonSeoEventAbstractContext } from './taon-seo-event/taon-seo-event.abstract.context';
+import { TaonSeoPageAbstractContext } from './taon-seo-page/taon-seo-page.abstract.context';
+import { TaonSeoSettingsAbstractContext } from './taon-seo-settings/taon-seo-settings.abstract.context';
 
 export const TaonSeoAbstractContext = createContext(() => ({
   contextName: 'TaonSeoAbstractContext',
   abstract: true,
   contexts: {
     TaonSessionAbstractContext,
-    TaonSeoEventAbstractContext,
+
+    // local
+    TaonSeoPageAbstractContext,
+    TaonSeoSettingsAbstractContext,
   },
 }));
-
-// THIS FILE IS GENERATED - DO NOT MODIFY

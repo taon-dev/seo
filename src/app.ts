@@ -357,10 +357,7 @@ export const SeoServerConfig: ApplicationConfig = {
   providers: [provideServerRendering(withRoutes(SeoServerRoutes))],
 };
 
-export const SeoConfig = mergeApplicationConfig(
-  SeoAppConfig,
-  SeoServerConfig,
-);
+export const SeoConfig = mergeApplicationConfig(SeoAppConfig, SeoServerConfig);
 //#endregion
 //#endregion
 

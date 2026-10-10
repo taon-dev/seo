@@ -7,17 +7,31 @@ export const TaonSeoBackofficeRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./taon-seo-backoffice.component').then(m => m.TaonSeoBackofficeComponent),
+      import('./taon-seo-backoffice.component').then(
+        m => m.TaonSeoBackofficeComponent,
+      ),
 
     children: [
-      // adminLazyRoute({
-      //   path: 'dashboard',
-      //   menuItem: 'Dashboard',
-      //   icon: 'dashboard',
-      //   expandable: false,
-      //   loader: () =>
-      //     import('./anothermodule.routes').then(m => m.DashboardRoutes),
-      // }),
+      adminLazyRoute({
+        path: 'settings',
+        menuItem: 'Settings',
+        icon: 'settings',
+        expandable: false,
+        loader: () =>
+          import('../taon-seo-settings/taon-seo-settings-backoffice/taon-seo-settings-backoffice.routes').then(
+            m => m.TaonSeoSettingsBackofficeRoutes,
+          ),
+      }),
+      adminLazyRoute({
+        path: 'pages',
+        menuItem: 'Pages',
+        icon: 'extension',
+        expandable: false,
+        loader: () =>
+          import('../taon-seo-page/taon-seo-page-backoffice/taon-seo-page-backoffice.routes').then(
+            m => m.TaonSeoPageBackofficeRoutes,
+          ),
+      }),
     ],
   },
 ];
