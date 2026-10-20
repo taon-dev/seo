@@ -1,9 +1,9 @@
-import {
-  MyAppAuthorization,
-  MyAppGroup,
-  MyAppPermission,
-  MyAppRole,
-} from '@taon-dev/cms/src';
+// import {
+//   MyAppAuthorization,
+//   MyAppGroup,
+//   MyAppPermission,
+//   MyAppRole,
+// } from '@taon-dev/cms/src';
 import { TaonAuthContextRepository } from '@taon-dev/session/src';
 import { Taon, TaonBaseMigration, TaonMigration } from 'taon/src';
 import { QueryRunner } from 'taon-typeorm/src';
@@ -14,7 +14,7 @@ import { QueryRunner } from 'taon-typeorm/src';
 })
 export class SeoContext_1791132517216_initial extends TaonBaseMigration {
   private taonAuthContextRepository = this.injectCustomRepo(
-    TaonAuthContextRepository<MyAppAuthorization>,
+    TaonAuthContextRepository,
   );
 
   //#region up
