@@ -186,8 +186,6 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
 export class SeoApp implements OnInit {
   t = t.for(this);
 
-
-
   config: TaonSessionConfig = {
     // linkToDashboard: '/',
     // defaultEmail: DEFAULT_EMAIL,
