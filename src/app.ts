@@ -148,7 +148,6 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
     MatTabsModule,
     RouterModule,
     TaonDraggableButtonPanelComponent,
-    TaonSessionComponent,
     TaonSessionButtonComponent,
     JsonPipe,
   ],
@@ -187,7 +186,7 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP, {
 export class SeoApp implements OnInit {
   t = t.for(this);
 
-  outlet = TaonBaselineBackofficeOutletName;
+
 
   config: TaonSessionConfig = {
     // linkToDashboard: '/',
@@ -215,6 +214,8 @@ export class SeoApp implements OnInit {
   angularVersion = VERSION.full;
 
   forceShowBaseRootApp = false;
+
+  outlet = TaonBaselineBackofficeOutletName;
 
   basePath!: string;
 
