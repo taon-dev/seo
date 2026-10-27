@@ -19,8 +19,7 @@ export class TaonSeoProvider extends TaonBaseProvider {
   }: Models.TaonCtrlBeforeEachRequestParams): Promise<void> {
     //#region @backendFunc
     await this.sessions.throwIfNotAuthenticated({ req, res });
-    const userId = Number('userId' in req ? req.userId : undefined);
-    const context = await this.authorization.getContext(userId);
+    const context = await this.authorization.getContext(Number(req.userId), req.sessionId);
     if (!context.isInGroup('administrator')) {
       seoError('Only administrators can manage SEO configuration.', 403);
     }
