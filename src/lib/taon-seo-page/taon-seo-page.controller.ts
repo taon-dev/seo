@@ -31,7 +31,9 @@ import { TaonSeoPageRepository } from './taon-seo-page.repository';
 })
 export class TaonSeoPageController extends TaonBaseCrudController<TaonSeoPageEntity> {
   entityClassResolveFn = () => TaonSeoPageEntity;
+
   private readonly pages = this.injectCustomRepo(TaonSeoPageRepository);
+
   private readonly seo = this.injectProvider(TaonSeoProvider);
 
   async beforeEachRequest(

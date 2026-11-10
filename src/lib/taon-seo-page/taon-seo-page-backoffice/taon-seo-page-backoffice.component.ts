@@ -32,9 +32,13 @@ export class TaonSeoPageBackofficeComponent {
   readonly datatable!: TaonDatatableComponent;
 
   readonly api = inject(TaonSeoPageApiService);
+
   readonly error = signal('');
+
   readonly deleting = signal<number | null>(null);
+
   private readonly dialog = inject(MatDialog);
+
   private readonly destroyRef = inject(DestroyRef);
 
   get crud() {

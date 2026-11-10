@@ -45,9 +45,13 @@ import type { TaonSeoPageEntity } from '../taon-seo-page.entity';
 })
 export class TaonSeoPageEditDialogComponent {
   readonly data = inject<{ page?: TaonSeoPageEntity }>(MAT_DIALOG_DATA);
+
   readonly saving = signal(false);
+
   readonly uploading = signal(false);
+
   readonly error = signal('');
+
   readonly form = new FormGroup({
     path: new FormControl(this.data.page?.path ?? '/', {
       nonNullable: true,
@@ -78,8 +82,11 @@ export class TaonSeoPageEditDialogComponent {
       nonNullable: true,
     }),
   });
+
   private readonly api = inject(TaonSeoPageApiService);
+
   private readonly destroyRef = inject(DestroyRef);
+
   private readonly ref = inject(MatDialogRef<TaonSeoPageEditDialogComponent>);
 
   close(): void {
