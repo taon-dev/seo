@@ -18,9 +18,9 @@ const t = Translation.for(Taon.__FILE_RELATIVE_PATH, Taon.LANG_IMPORT_MAP);
 
 @TaonProvider({ className: 'TaonSeoProvider' })
 export class TaonSeoProvider extends TaonBaseProvider {
-  private readonly sessions = this.injectCustomRepo(TaonSessionRepository);
+  private readonly sessions = this.inject(TaonSessionRepository);
 
-  private readonly authorization = this.injectCustomRepo(
+  private readonly authorization = this.inject(
     TaonAuthContextRepository,
   );
 

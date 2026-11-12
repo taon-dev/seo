@@ -9,7 +9,7 @@ import { TaonSeoSettingsProvider } from './taon-seo-settings.provider';
   // allowedEvents: ['afterUpdate'],
 })
 export class TaonSeoSettingsSubscriber extends TaonBaseSubscriberForEntity {
-  private readonly taonSeoSettingsProvider = this.injectProvider(TaonSeoSettingsProvider);
+  private readonly taonSeoSettingsProvider = this.inject(TaonSeoSettingsProvider);
   listenTo(): typeof TaonSeoSettingsEntity {
     return TaonSeoSettingsEntity;
   }

@@ -7,7 +7,7 @@ import type { TaonSeoPageInput } from './taon-seo-page.models';
 
 @Injectable()
 export class TaonSeoPageApiService extends TaonBaseAngularService {
-  readonly taonSeoPageController = this.injectController(TaonSeoPageController);
+  readonly taonSeoPageController = this.inject(TaonSeoPageController);
 
   findByPath(path: string) {
     return this.taonSeoPageController.findByPath(path)

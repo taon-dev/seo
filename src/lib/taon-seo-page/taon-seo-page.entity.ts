@@ -1,6 +1,7 @@
 import {
   Column,
   PrimaryGeneratedColumn,
+  TaonBaseAbstractEntity,
   TaonBaseEntity,
   TaonEntity,
 } from 'taon/src';
@@ -9,12 +10,7 @@ import {
   className: 'TaonSeoPageEntity',
   createTable: true,
 })
-export class TaonSeoPageEntity extends TaonBaseEntity<TaonSeoPageEntity> {
-  //#region @websql
-  @PrimaryGeneratedColumn()
-  //#endregion
-  id: number;
-
+export class TaonSeoPageEntity extends TaonBaseAbstractEntity<TaonSeoPageEntity> {
   //#region @websql
   @Column({ type: 'varchar', unique: true })
   //#endregion

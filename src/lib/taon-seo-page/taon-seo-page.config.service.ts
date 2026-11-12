@@ -9,7 +9,7 @@ import { TaonSeoPageProvider } from './taon-seo-page.provider';
 
 @Injectable()
 export class TaonSeoPageConfigService extends TaonBaseAngularService {
-  private taonSeoPageProvider = this.injectProvider(TaonSeoPageProvider);
+  private taonSeoPageProvider = this.inject(TaonSeoPageProvider);
 
   get isEnableOption() {
     return this.taonSeoPageProvider.enabledTaonSeoPageOption;

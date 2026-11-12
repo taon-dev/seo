@@ -6,7 +6,7 @@ import { TaonSeoImageController } from './taon-seo-image.controller';
 
 @Injectable()
 export class TaonSeoImageApiService extends TaonBaseAngularService {
-  private readonly images = this.injectController(TaonSeoImageController);
+  private readonly images = this.inject(TaonSeoImageController);
 
   async upload(file: File): Promise<string> {
     const data = new FormData();

@@ -1,14 +1,10 @@
-import { Column, PrimaryColumn, TaonBaseEntity, TaonEntity } from 'taon/src';
+import { Column, PrimaryColumn, TaonBaseAbstractEntity, TaonBaseEntity, TaonEntity } from 'taon/src';
 
 @TaonEntity({
   className: 'TaonSeoSettingsEntity',
   createTable: true,
 })
-export class TaonSeoSettingsEntity extends TaonBaseEntity<TaonSeoSettingsEntity> {
-  //#region @websql
-  @PrimaryColumn({ type: 'integer' })
-  //#endregion
-  id: number;
+export class TaonSeoSettingsEntity extends TaonBaseAbstractEntity<TaonSeoSettingsEntity> {
 
   //#region @websql
   @Column({ type: 'varchar', default: '' })

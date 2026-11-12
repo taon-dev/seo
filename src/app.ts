@@ -52,7 +52,7 @@ import {
   ENV_ANGULAR_NODE_APP_CONFIG_GOOGLE_CLIENT_ID,
   ENV_ANGULAR_NODE_APP_CONFIG_GOOGLE_SECRET,
   ENV_ANGULAR_NODE_APP_CONFIG_SUPER_USERS,
-} from '@taon-dev/seo/src';
+} from './lib/env/env.angular-node-app';
 import { Translation, TranslationManager } from '@taon-dev/i18n/src';
 // TranslationManager.globalDefautlLanguageOverride = 'pl-PL';
 import { TranslateDirective } from '@taon-dev/i18n/src'; // @browser

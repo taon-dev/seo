@@ -9,7 +9,7 @@ import { TaonSeoPageProvider } from './taon-seo-page.provider';
   // allowedEvents: ['afterUpdate'],
 })
 export class TaonSeoPageSubscriber extends TaonBaseSubscriberForEntity {
-  private readonly taonSeoPageProvider = this.injectProvider(TaonSeoPageProvider);
+  private readonly taonSeoPageProvider = this.inject(TaonSeoPageProvider);
   listenTo(): typeof TaonSeoPageEntity {
     return TaonSeoPageEntity;
   }

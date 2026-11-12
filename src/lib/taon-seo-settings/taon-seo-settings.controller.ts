@@ -20,8 +20,8 @@ import { TaonSeoSettingsRepository } from './taon-seo-settings.repository';
 })
 export class TaonSeoSettingsController extends TaonBaseCrudController<TaonSeoSettingsEntity> {
   entityClassResolveFn = () => TaonSeoSettingsEntity;
-  private readonly settings = this.injectCustomRepo(TaonSeoSettingsRepository);
-  private readonly seo = this.injectProvider(TaonSeoProvider);
+  private readonly settings = this.inject(TaonSeoSettingsRepository);
+  private readonly seo = this.inject(TaonSeoProvider);
 
   async beforeEachRequest(
     params: Models.TaonCtrlBeforeEachRequestParams,

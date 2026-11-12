@@ -7,7 +7,7 @@ import type { TaonSeoSettingsInput } from './taon-seo-settings.models';
 
 @Injectable()
 export class TaonSeoSettingsApiService extends TaonBaseAngularService {
-  readonly taonSeoSettingsController = this.injectController(
+  readonly taonSeoSettingsController = this.inject(
     TaonSeoSettingsController,
   );
 

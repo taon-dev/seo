@@ -13,7 +13,7 @@ import { QueryRunner } from 'taon-typeorm/src';
   className: 'SeoContext_1791132517216_initial',
 })
 export class SeoContext_1791132517216_initial extends TaonBaseMigration {
-  private taonAuthContextRepository = this.injectCustomRepo(
+  private taonAuthContextRepository = this.inject(
     TaonAuthContextRepository,
   );
 

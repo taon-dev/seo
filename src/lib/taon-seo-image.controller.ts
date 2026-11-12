@@ -24,7 +24,7 @@ const imageTypes = new Map([
   allowedMethods: ['download', 'getPublicUrl', 'uploadFormDataToServer'],
 })
 export class TaonSeoImageController extends TaonBaseStorageController {
-  private readonly seo = this.injectProvider(TaonSeoProvider);
+  private readonly seo = this.inject(TaonSeoProvider);
 
   async beforeEachRequest(
     params: Models.TaonCtrlBeforeEachRequestParams,
