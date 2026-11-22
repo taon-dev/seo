@@ -8,4 +8,7 @@ export const MIGRATIONS_CLASSES_FOR_SeoContext = {
   /* 04-10-2026 18:48:37 */ SeoContext_1791132517216_initial,
   /* 10-10-2026 20:00:00 */ SeoContext_1791655200000_seo_configuration,
 };
+export const MIGRATIONS_CLASSES_FOR_TaonSeoAbstractContext = {};
+export const MIGRATIONS_CLASSES_FOR_TaonSeoPageAbstractContext = {};
+export const MIGRATIONS_CLASSES_FOR_TaonSeoSettingsAbstractContext = {};
 // THIS FILE IS GENERATED - DO NOT MODIFY
